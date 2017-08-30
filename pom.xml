@@ -32,7 +32,7 @@
 
   <groupId>com.github.ppadial</groupId>
   <artifactId>testrail-api-client</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.0-SNAPSHOT</version>
 
   <name>Testrail api client for Java</name>
   <description>A testrail API client for java projects</description>
@@ -42,7 +42,7 @@
     <url>https://github.com/ppadial/testrail-api-client-java</url>
     <connection>scm:git:https://github.com/ppadial/testrail-api-client-java.git</connection>
     <developerConnection>scm:git:https://github.com/ppadial/testrail-api-client-java.git</developerConnection>
-    <tag>testrail-api-client-0.1.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
