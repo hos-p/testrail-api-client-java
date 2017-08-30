@@ -47,9 +47,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git@github.com:ppadial/testrail-api-client-java.git</connection>
-    <developerConnection>scm:git:git@github.com:ppadial/testrail-api-client-java.git</developerConnection>
-    <url>https://github.com/ppadial/testrail-api-client-java</url>
+    <connection>scm:git:git@github.com:ppadial/${project.artifactId}.git</connection>
+    <developerConnection>scm:git:git@github.com:ppadial/${project.artifactId}.git</developerConnection>
+    <url>https://github.com/ppadial/${project.artifactId}</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -73,12 +73,12 @@
 
   <issueManagement>
     <system>GitHub Issues</system>
-    <url>https://github.com/ppadial/testrail-api-client-java/issues</url>
+    <url>https://github.com/ppadial/${project.artifactId}/issues</url>
   </issueManagement>
 
   <ciManagement>
     <system>travis</system>
-    <url>https://travis-ci.org/ppadial/testrail-api-client-java</url>
+    <url>https://travis-ci.org/ppadial/${project.artifactId}</url>
   </ciManagement>
 
   <developers>
