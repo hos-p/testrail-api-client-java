@@ -39,6 +39,7 @@ package com.github.ppadial.testrail.client;
  * @since 0.1.0
  */
 public class TestRailException extends Exception {
+  private static final long serialVersionUID = 12345600L;
 
   /**
    * Constructs a new exception with {@code null} as its detail message. The cause is not initialized, and may
