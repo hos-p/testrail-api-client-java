@@ -58,11 +58,13 @@ public final class ResultServiceClient extends TestRailServiceBase {
    * Gets the results for a testcase.
    *
    * @param testId The ID of the test
+   * @param limit the number of results to get, 0 if you want all of them
    * @return list of results for the test case
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final List<TRResult> getResults(final int testId, final Integer limit)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRResult> responseObjectModel;
 
@@ -88,7 +90,12 @@ public final class ResultServiceClient extends TestRailServiceBase {
     return responseObjectModel;
   }
 
-  public final List<TRResult> getResultsFilterByStatusId() throws ApiCallException, TestRailException {
+  /**
+   * .
+   * @return .
+   * @throws TestRailException An error in the connection with testrail
+   */
+  public final List<TRResult> getResultsFilterByStatusId() throws TestRailException {
     throw new NotImplementedException("method not implemented");
   }
 
@@ -102,11 +109,12 @@ public final class ResultServiceClient extends TestRailServiceBase {
    * @param limit Limit the result to :limit test results. Use :offset to skip records.
    * @param statuses A comma-separated list of status IDs to filter by.
    * @return list of test results
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final List<TRResult> getResultsForRun(final int runId, final Long createdAfter, final Long createdBefore,
       final List<Integer> createdBy, final Integer limit, final List<Integer> statuses)
-      throws ApiCallException, TestRailException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRResult> responseObjectModel;
 
@@ -153,11 +161,13 @@ public final class ResultServiceClient extends TestRailServiceBase {
    *
    * @param runId The ID of the test run
    * @param caseId The ID of the test case
+   * @param limit the number of results to gets, 0 if you want all of them
    * @return list of test results
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final List<TRResult> getResultsForCase(final int runId, final int caseId, final Integer limit)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestCaseException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final List<TRResult> responseObjectModel;
@@ -195,11 +205,12 @@ public final class ResultServiceClient extends TestRailServiceBase {
    * @param customFields Custom fields are supported as well and must be submitted with their system name, prefixed with
    * 'custom_'
    * @return the added test result
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRResult addResult(final int testId, final Integer statusId, final String comment, final String version,
       final Long elapsed, final String defects, final Integer assignedToId, final Map<String, String> customFields)
-      throws ApiCallException, TestRailException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRResult responseObjectModel;
     final Map<String, String> body = new HashMap<String, String>();
@@ -265,12 +276,13 @@ public final class ResultServiceClient extends TestRailServiceBase {
    * @param customFields Custom fields are supported as well and must be submitted with their system name, prefixed with
    * 'custom_'
    * @return the added test result
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRResult addResultForCase(final int runId, final int caseId, final Integer statusId,
       final String comment,
       final String version, final Long elapsed, final String defects, final Integer assignedToId,
-      final Map<String, String> customFields) throws ApiCallException, TestRailException {
+      final Map<String, String> customFields) throws TestRailException {
     final ApiResponse apiResponse;
     final TRResult responseObjectModel;
     final Map<String, String> body = new HashMap<String, String>();
@@ -319,6 +331,7 @@ public final class ResultServiceClient extends TestRailServiceBase {
   /**
    * Adds one or more new test results, comments or assigns one or more tests (using the case IDs). Ideal for test
    * automation to bulk-add multiple test results in one step.
+   * @return .
    */
   public final TRResult addResultsForCases() {
     throw new NotImplementedException("Not implemented");

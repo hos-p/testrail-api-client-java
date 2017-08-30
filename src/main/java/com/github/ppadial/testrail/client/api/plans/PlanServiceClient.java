@@ -62,9 +62,11 @@ public final class PlanServiceClient extends TestRailServiceBase {
    *
    * @param planId The ID of the test plan
    * @return the test plan and its test run
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final TRPlan getPlan(final int planId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRPlan responseObjectModel;
 
@@ -89,12 +91,14 @@ public final class PlanServiceClient extends TestRailServiceBase {
    * Get all test plans of a project with a filter.
    *
    * @param projectId project identifier
+   * @param filters filters to apply
    * @return list of test plans from the specified project that meets the filter
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   // TODO: Change filters by parameters nullable
   public final List<TRPlan> getPlans(final int projectId, final Map<String, String> filters)
-      throws ApiCallException, TestRailException, NoAccessToProjectException, InvalidOrUnknownProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRPlan> responseObjectModel;
 
@@ -127,14 +131,16 @@ public final class PlanServiceClient extends TestRailServiceBase {
    *
    * @param projectId project identifier
    * @param name The name of the test plan (required)
+   * @param description the description of the test plan
    * @param milestoneId The ID of the milestone to link to the test plan
    * @param entries An array of objects describing the test runs of the plan
    * @return the created test plan
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRPlan addPlan(final int projectId, final String name, final String description,
       final Integer milestoneId, final List<TRPlanEntry> entries)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRPlan responseObjectModel;
@@ -176,12 +182,13 @@ public final class PlanServiceClient extends TestRailServiceBase {
    * @return the test run(s) were created and are returned as part of the response. Please note that test runs in a plan
    * are organized into 'entries' and these have their own IDs (to be used with update_plan_entry and delete_plan_entry,
    * respectively).
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   // TODO: Handle all optional parameters
   // TODO: Create a Generic NoPermissionsException ?
   public final TRPlanEntry addPlanEntry(final int planId, final int suiteId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRPlanEntry responseObjectModel;
 
@@ -212,11 +219,12 @@ public final class PlanServiceClient extends TestRailServiceBase {
    * @return the test run(s) were created and are returned as part of the response. Please note that test runs in a plan
    * are organized into 'entries' and these have their own IDs (to be used with update_plan_entry and delete_plan_entry,
    * respectively).
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   // TODO: Add optional parameters
   public final List<TRPlanEntry> updatePlanEntry(final int planId, final int entryId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final List<TRPlanEntry> responseObjectModel;
@@ -243,14 +251,15 @@ public final class PlanServiceClient extends TestRailServiceBase {
 
   /**
    * Close an existing plan.
+   * Closing a test plan cannot be undone.
    *
    * @param planId The ID of the test plan
    * @return the closed plan
-   * @implNote Closing a test plan cannot be undone.
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRPlan closePlan(final int planId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRPlan responseObjectModel;
 
@@ -273,14 +282,15 @@ public final class PlanServiceClient extends TestRailServiceBase {
 
   /**
    * Deletes an existing test plan.
+   * Deleting a test plan cannot be undone and also permanently deletes all test runs and results of the test
+   * plan.
    *
    * @param planId The ID of the test plan
-   * @implNote Deleting a test plan cannot be undone and also permanently deletes all test runs & results of the test
-   * plan.
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final void deletePlan(final int planId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query
@@ -301,14 +311,15 @@ public final class PlanServiceClient extends TestRailServiceBase {
 
   /**
    * Deletes an existing test plan.
+   * Deleting a test run from a plan cannot be undone and also permanently deletes all related test results.
    *
    * @param planId The ID of the test plan
    * @param entryId The ID of the test plan entry (note: not the test run ID)
-   * @implNote Deleting a test run from a plan cannot be undone and also permanently deletes all related test results.
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final void deletePlanEntry(final int planId, final int entryId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query

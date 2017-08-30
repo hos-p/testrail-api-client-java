@@ -55,15 +55,16 @@ public final class CaseTypeServiceClient extends TestRailServiceBase {
    *
    * @return list of available case types
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final List<TRCaseType> getCaseTypes()
-      throws ApiCallException, TestRailException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final List<TRCaseType> responseObjectModel;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_case_types");
+    apiResponse = get("get_case_types");
 
     // Handle response
     responseObjectModel = handleApiResponse(apiResponse, new TypeReference<List<TRCaseType>>() {

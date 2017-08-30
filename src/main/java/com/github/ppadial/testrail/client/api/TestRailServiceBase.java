@@ -54,6 +54,11 @@ public abstract class TestRailServiceBase {
   //(de)-serializes objects to/from json
   protected ObjectMapper objectMapper;
 
+  /**
+   * creates a new instance.
+   * @param apiClient apiclient to use
+   * @since 0.1.0
+   */
   public TestRailServiceBase(ApiClient apiClient) {
     LOG.debug(":: Constructor:: called");
     this.apiClient = apiClient;
@@ -65,6 +70,13 @@ public abstract class TestRailServiceBase {
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
   }
 
+  /**
+   * .
+   * @param apiResponse .
+   * @param choices .
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
+   */
   protected void handleApiResponse(final ApiResponse apiResponse, Map<HttpStatusCode, TestRailException> choices)
       throws TestRailException {
     if (!apiResponse.getHttpStatusCode().is2xxSuccessful()) {
@@ -72,6 +84,16 @@ public abstract class TestRailServiceBase {
     }
   }
 
+  /**
+   * .
+   * @param apiResponse .
+   * @param clazz .
+   * @param choices .
+   * @param <T> .
+   * @return .
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
+   */
   protected <T> T handleApiResponse(ApiResponse apiResponse, Class<T> clazz,
       Map<HttpStatusCode, TestRailException> choices) throws TestRailException {
     T type = null;
@@ -86,6 +108,15 @@ public abstract class TestRailServiceBase {
     return type;
   }
 
+  /**
+   * .
+   * @param apiResponse .
+   * @param typeReference .
+   * @param choices .
+   * @param <T> .
+   * @return .
+   * @throws TestRailException An error in the connection with testrail
+   */
   protected <T> T handleApiResponse(ApiResponse apiResponse, TypeReference<T> typeReference,
       Map<HttpStatusCode, TestRailException> choices)
       throws TestRailException {
@@ -147,6 +178,7 @@ public abstract class TestRailServiceBase {
    * @param uriSuffix api uri subfix to send POST
    * @return an api response
    * @throws TestRailException An Error during operation
+   * @since 0.1.0
    */
   protected ApiResponse post(String uriSuffix) throws TestRailException {
     final ApiResponse apiResponse;
@@ -165,6 +197,7 @@ public abstract class TestRailServiceBase {
    * @param data map with properties to send in the request body
    * @return an api response
    * @throws TestRailException An Error during operation
+   * @since 0.1.0
    */
   protected ApiResponse post(String uriSuffix, Map<String, ? extends Object> data) throws TestRailException {
     final ApiResponse apiResponse;
@@ -184,6 +217,7 @@ public abstract class TestRailServiceBase {
    * @param uriSuffix api uri subfix to send GET
    * @return an api response
    * @throws TestRailException An Error during operation
+   * @since 0.1.0
    */
   protected ApiResponse get(String uriSuffix) throws TestRailException {
     final ApiResponse apiResponse;

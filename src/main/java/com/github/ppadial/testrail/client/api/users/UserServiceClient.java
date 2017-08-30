@@ -58,17 +58,15 @@ public final class UserServiceClient extends TestRailServiceBase {
    *
    * @param userId The ID of the user
    * @return the user ID
-   * @throws ApiCallException An error during the api call
-   * @throws InvalidOrUnknownUserException invalid or unknown user
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
-  public final TRUser getUser(final int userId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownUserException {
+  public final TRUser getUser(final int userId) throws TestRailException {
     final ApiResponse apiResponse;
     final TRUser trUser;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_user/" + userId);
+    apiResponse = get("get_user/" + userId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{
@@ -87,19 +85,15 @@ public final class UserServiceClient extends TestRailServiceBase {
    *
    * @param email the email address to get the user for
    * @return the user
-   * @throws ApiCallException an error during api call
-   * @throws TestRailException an error handling testrail response
-   * @throws UnknownEmailAddressException the email was not found on testrail
-   * @throws InvalidEmailAddressException the email is not a valid email (from testrail validation)
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
-  public final TRUser getUserByEmail(final String email)
-      throws ApiCallException, TestRailException, UnknownEmailAddressException, InvalidEmailAddressException {
+  public final TRUser getUserByEmail(final String email) throws TestRailException {
     final ApiResponse apiResponse;
     final TRUser trUser;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_user_by_email&email=" + email);
+    apiResponse = get("get_user_by_email&email=" + email);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{
@@ -119,16 +113,15 @@ public final class UserServiceClient extends TestRailServiceBase {
    * Returns a list of users.
    *
    * @return a list of users
-   * @throws ApiCallException an error during api call
-   * @throws TestRailException an error handling testrail response
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
-  public final List<TRUser> getUsers() throws ApiCallException, TestRailException {
+  public final List<TRUser> getUsers() throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRUser> trUser;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_users");
+    apiResponse = get("get_users");
 
     // Handle response
     trUser = handleApiResponse(apiResponse, new TypeReference<List<TRUser>>() {

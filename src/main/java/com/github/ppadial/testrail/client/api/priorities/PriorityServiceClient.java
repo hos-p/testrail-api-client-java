@@ -58,16 +58,17 @@ public final class PriorityServiceClient extends TestRailServiceBase {
    * is_default field is true for the default priority and false otherwise. </p>
    *
    * @return list of available priorities
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final List<TRPriority> getPriorities()
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final List<TRPriority> responseObjectModel;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_priorities/");
+    apiResponse = get("get_priorities/");
 
     // Handle response
     responseObjectModel = handleApiResponse(apiResponse, new TypeReference<List<TRPriority>>() {

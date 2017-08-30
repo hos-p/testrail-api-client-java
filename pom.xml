@@ -27,12 +27,12 @@
   <parent>
     <groupId>com.github.ppadial</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
   </parent>
 
   <groupId>com.github.ppadial</groupId>
   <artifactId>testrail-api-client</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
 
   <name>Testrail api client for Java</name>
   <description>A testrail API client for java projects</description>

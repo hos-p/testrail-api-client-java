@@ -62,19 +62,16 @@ public final class TestServiceClient extends TestRailServiceBase {
    *
    * @param testId The ID of the test
    * @return an existing test
-   * @throws ApiCallException an error during api call
-   * @throws TestRailException an error processing the result
-   * @throws InvalidOrUnknownTestException Invalid or unknown test
-   * @throws NoAccessToProjectException No access to the project
-   * @apiNote If you interested in the test results rather than the tests
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final TRTest getTest(final int testId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRTest trTest;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_test/" + testId);
+    apiResponse = get("get_test/" + testId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{
@@ -92,18 +89,16 @@ public final class TestServiceClient extends TestRailServiceBase {
    *
    * @param runId The ID of the test run
    * @return list of tests
-   * @throws ApiCallException an error during api call
-   * @throws TestRailException an error processing the result
-   * @throws InvalidOrUnknownTestException Invalid or unknown test
-   * @throws NoAccessToProjectException No access to the project
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final List<TRTest> getTests(final int runId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestRunException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRTest> trTest;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_tests/" + runId);
+    apiResponse = get("get_tests/" + runId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{
@@ -124,9 +119,11 @@ public final class TestServiceClient extends TestRailServiceBase {
    * @param runId The ID of the test run
    * @param statuses list of status identifier
    * @return list of tests with the status specified
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final List<TRTest> getTestsFilterByStatus(final int runId, final int... statuses)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestRunException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRTest> responseObjectModel;
 
@@ -135,7 +132,7 @@ public final class TestServiceClient extends TestRailServiceBase {
     final String listOfStatus = String.join(",",
         (Arrays.stream(statuses)).sorted().mapToObj(String::valueOf).toArray(String[]::new));
     // Do the query
-    apiResponse = apiClient.doGet("get_tests/" + runId + "&status_id=" + listOfStatus);
+    apiResponse = get("get_tests/" + runId + "&status_id=" + listOfStatus);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{

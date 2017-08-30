@@ -96,6 +96,11 @@ public class ApiClient {
     }
   }
 
+  /**
+   * For testing pourposes constructor.
+   * @param httpClient http client to use
+   * @since 0.1.0
+   */
   public ApiClient(HttpClient httpClient) {
     this.url = url + "/index.php?/api/v2/";
     this.httpClient = httpClient;
@@ -118,6 +123,7 @@ public class ApiClient {
    * Enable the retry-mode per request.
    *
    * @param numOfRetries number of retries before mark a failure (min {@code MIN_RETRY_NUM}, max {@code MAX_RETRY_NUM})
+   * @param millisBetweenRetries number of milliseconds between retries
    * @since 0.1.0
    */
   public void enableRetryOnFailure(final Integer numOfRetries, final Integer millisBetweenRetries) {
@@ -149,6 +155,7 @@ public class ApiClient {
    *
    * @param uriSuffix suffix url to query
    * @return response object
+   * @throws ApiCallException An error during the call to the service
    * @since 0.1.0
    */
   public ApiResponse doGet(String uriSuffix) throws ApiCallException {
@@ -163,6 +170,7 @@ public class ApiClient {
    * @param uriSuffix suffix url to query
    * @param jsonData json request body data
    * @return response object
+   * @throws ApiCallException An error during the call to the service
    * @since 0.1.0
    */
   public ApiResponse doPost(String uriSuffix, String jsonData) throws ApiCallException {
@@ -188,6 +196,7 @@ public class ApiClient {
    *
    * @param uriSuffix suffix url to query
    * @return response object
+   * @throws ApiCallException An error during the call to the service
    * @since 0.1.0
    */
   public ApiResponse doPost(String uriSuffix) throws ApiCallException {

@@ -61,10 +61,11 @@ public final class ProjectServiceClient extends TestRailServiceBase {
    *
    * @param projectId The ID of the project
    * @return project
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRProject getProject(final int projectId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRProject responseObjectModel;
 
@@ -88,10 +89,10 @@ public final class ProjectServiceClient extends TestRailServiceBase {
    * Returns the list of available projects.
    *
    * @return List of available projects
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
-  public final List<TRProject> getProjects()
-      throws ApiCallException, TestRailException {
+  public final List<TRProject> getProjects() throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRProject> responseObjectModel;
 
@@ -109,10 +110,10 @@ public final class ProjectServiceClient extends TestRailServiceBase {
    *
    * @param isCompleted True to return completed projects only. False to return active projects only.
    * @return List of available projects
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
-  public final List<TRProject> getProjects(final boolean isCompleted)
-      throws ApiCallException, TestRailException {
+  public final List<TRProject> getProjects(final boolean isCompleted) throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRProject> responseObjectModel;
 
@@ -133,11 +134,12 @@ public final class ProjectServiceClient extends TestRailServiceBase {
    * @param showAnnouncement True if the announcement should be displayed on the project's overview page and false
    * otherwise
    * @param suiteMode The suite mode of the project
+   * @return the added project
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRProject addProject(final String name, final String announcement, final boolean showAnnouncement,
-      final SuiteMode suiteMode)
-      throws ApiCallException, TestRailException, NoAccessToProjectException {
+      final SuiteMode suiteMode) throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRProject responseObjectModel;
@@ -176,17 +178,20 @@ public final class ProjectServiceClient extends TestRailServiceBase {
    * Updates an existing project (admin status required; partial updates are supported, i.e. you can submit and update
    * specific fields only).
    *
+   * @param projectId the project ID
    * @param name The name of the project (required)
    * @param announcement The description of the project
    * @param showAnnouncement True if the announcement should be displayed on the project's overview page and false
    * otherwise
    * @param suiteMode The suite mode of the project
    * @param isCompleted Specifies whether a project is considered completed or not
+   * @return the updated project
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRProject updateProject(final int projectId, final String name, final String announcement,
       final boolean showAnnouncement, final SuiteMode suiteMode, final boolean isCompleted)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRProject responseObjectModel;
@@ -223,14 +228,13 @@ public final class ProjectServiceClient extends TestRailServiceBase {
 
   /**
    * Deletes an existing project (admin status required).
-   *
-   * @param projectId The ID of the project
-   * @implNote Deleting a project cannot be undone and also permanently deletes all test suites & cases, test runs &
+   * Deleting a project cannot be undone and also permanently deletes all test suites and cases, test runs and
    * results and everything else that is part of the project.
+   * @param projectId The ID of the project
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
-  public final void deleteProject(final int projectId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+  public final void deleteProject(final int projectId) throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query

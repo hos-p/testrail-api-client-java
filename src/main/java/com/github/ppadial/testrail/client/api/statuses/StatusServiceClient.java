@@ -54,9 +54,10 @@ public final class StatusServiceClient extends TestRailServiceBase {
    * Returns a list of available test statuses.
    *
    * @return a list of statuses
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
-  public final List<TRStatus> getStatuses()
-      throws ApiCallException, TestRailException {
+  public final List<TRStatus> getStatuses() throws TestRailException {
 
     final ApiResponse apiResponse;
     final List<TRStatus> responseObjectModel;

@@ -52,14 +52,16 @@ public final class RunServiceClient extends TestRailServiceBase {
    *
    * @param runId The ID of the test run
    * @return test run
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final TRRun getRun(final int runId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestRunException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRRun responseObjectModel;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_run/" + runId);
+    apiResponse = get("get_run/" + runId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{

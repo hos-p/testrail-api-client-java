@@ -61,15 +61,16 @@ public final class MilestoneServiceClient extends TestRailServiceBase {
    *
    * @param milestoneId The ID of the milestone
    * @return milestone
-   * @throws InvalidOrUnknownMilestoneException invalid or unknown milestone
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final TRMilestone getMilestone(final int milestoneId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownMilestoneException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRMilestone responseObjectModel;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_milestone/" + milestoneId);
+    apiResponse = get("get_milestone/" + milestoneId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{
@@ -87,15 +88,16 @@ public final class MilestoneServiceClient extends TestRailServiceBase {
    *
    * @param projectId The ID of the project
    * @return list of milestones of the project
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final List<TRMilestone> getMilestones(final int projectId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownMilestoneException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRMilestone> responseObjectModel;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_milestones/" + projectId);
+    apiResponse = get("get_milestones/" + projectId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{
@@ -118,10 +120,12 @@ public final class MilestoneServiceClient extends TestRailServiceBase {
    * @param dueOn The due date of the milestone (as UNIX timestamp)
    * @param parentId The ID of the parent milestone, if any (for sub-milestones) (available since TestRail 5.3)
    * @param startOn The scheduled start date of the milestone (as UNIX timestamp) (available since TestRail 5.3)
+   * @return the added milestone
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final TRMilestone addMilestone(final int projectId, final String name, final String description,
-      final Long dueOn, final Integer parentId,
-      final Long startOn) throws ApiCallException, TestRailException, InvalidOrUnknownMilestoneException {
+      final Long dueOn, final Integer parentId, final Long startOn) throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRMilestone responseObjectModel;
@@ -174,11 +178,14 @@ public final class MilestoneServiceClient extends TestRailServiceBase {
    * @param isStarted True if a milestone is considered started and false otherwise
    * @param parentId The ID of the parent milestone, if any (for sub-milestones) (available since TestRail 5.3)
    * @param startOn The scheduled start date of the milestone (as UNIX timestamp) (available since TestRail 5.3)
+   * @return the updated milestone
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final TRMilestone updateMilestone(final int milestoneId, final String name, final String description,
       final Long dueOn, final Boolean isCompleted,
       final Boolean isStarted, final Integer parentId, final Long startOn)
-      throws ApiCallException, TestRailException, InvalidOrUnknownMilestoneException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRMilestone responseObjectModel;
@@ -227,13 +234,15 @@ public final class MilestoneServiceClient extends TestRailServiceBase {
    * Deletes an existing milestone.
    *
    * @param milestoneId The ID of the milestone
+   * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final void deleteMilestone(final int milestoneId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownMilestoneException {
+      throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query
-    apiResponse = apiClient.doGet("delete_milestone/" + milestoneId);
+    apiResponse = get("delete_milestone/" + milestoneId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{

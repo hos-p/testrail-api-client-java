@@ -54,6 +54,7 @@ public class TestRailClient {
 
   /**
    * Creates an instance of the apiClient and setups up required state.
+   * @param apiClient the api client to use
    */
   public TestRailClient(ApiClient apiClient) {
     LOG.debug(":: Constructor:: called");
