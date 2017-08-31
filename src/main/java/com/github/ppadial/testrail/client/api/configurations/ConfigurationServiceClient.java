@@ -64,9 +64,11 @@ public final class ConfigurationServiceClient extends TestRailServiceBase {
    * @param projectId The ID of the project
    * @return Returns a list of available configurations, grouped by configuration groups (requires TestRail 3.1 or
    * later).
+   * @throws TestRailException An error in the connection with testrail
+   * @since 0.1.0
    */
   public final List<TRConfigGroup> getConfigs(final int projectId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestPlanException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRConfigGroup> responseObjectModel;
 
@@ -94,9 +96,10 @@ public final class ConfigurationServiceClient extends TestRailServiceBase {
    * @param name The name of the configuration (required)
    * @return created configuration
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final TRConfig addConfig(final int configGroup, final String name)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRConfig responseObjectModel;
 
@@ -133,9 +136,10 @@ public final class ConfigurationServiceClient extends TestRailServiceBase {
    * @param name The name of the configuration group (required)
    * @return the created configuration group
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final TRConfigGroup addConfigGroup(final int projectId, final String name)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRConfigGroup responseObjectModel;
 
@@ -172,10 +176,10 @@ public final class ConfigurationServiceClient extends TestRailServiceBase {
    * @param name The name of the configuration group
    * @return the updated configuration group
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final TRConfigGroup updateConfigGroup(final int configGroupId, final String name)
-      throws ApiCallException, TestRailException, InvalidOrUnknownConfigurationGroupException,
-      NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRConfigGroup responseObjectModel;
@@ -210,9 +214,10 @@ public final class ConfigurationServiceClient extends TestRailServiceBase {
    * @param name The name of the configuration
    * @return the updated configuration
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final TRConfig updateConfig(final int configId, final String name)
-      throws ApiCallException, TestRailException, InvalidOrUnknownConfigurationException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRConfig responseObjectModel;
@@ -242,16 +247,14 @@ public final class ConfigurationServiceClient extends TestRailServiceBase {
 
   /**
    * Deletes an existing configuration (requires TestRail 5.2 or later).
-   *
-   * @param configId The ID of the configuration
-   * @implNote Deleting a test plan cannot be undone and also permanently deletes all test runs & results of the test
-   * plan.
-   * @implNote Deleting a configuration cannot be undone. It does not, however, affect closed test plans/runs, or active
+   * Deleting a configuration cannot be undone. It does not, however, affect closed test plans/runs, or active
    * test plans/runs unless they are updated.
+   * @param configId The ID of the configuration
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final void deleteConfig(final int configId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownConfigurationException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query
@@ -272,14 +275,14 @@ public final class ConfigurationServiceClient extends TestRailServiceBase {
 
   /**
    * Deletes an existing configuration group and its configurations (requires TestRail 5.2 or later).
-   *
-   * @param configGroupId The ID of the configuration group
-   * @implNote Deleting a configuration group cannot be undone and also permanently deletes all configurations in this
+   * Deleting a configuration group cannot be undone and also permanently deletes all configurations in this
    * group. It does not, however, affect closed test plans/runs, or active test plans/runs unless they are updated.
+   * @param configGroupId The ID of the configuration group
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public final void deleteConfigGroup(final int configGroupId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownConfigurationGroupException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query

@@ -60,16 +60,17 @@ public final class TemplateServiceClient extends TestRailServiceBase {
    *
    * @param projectId the ID of the project
    * @return a list of templates
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final List<TRTemplate> getTemplates(final int projectId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final List<TRTemplate> responseObjectModel;
 
     // Do the query
-    apiResponse = apiClient.doGet("get_templates/" + projectId);
+    apiResponse = get("get_templates/" + projectId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {

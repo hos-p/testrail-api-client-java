@@ -28,12 +28,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * TRStatus representation in TestRail.
  *
- * <p> Each status has a unique ID, a name (system name) as well as a label (display name). The color related fields
+ * <p>Each status has a unique ID, a name (system name) as well as a label (display name). The color related fields
  * specify the different colors used for a status and are RGB colors. The following system statuses are available by
- * default. You can add additional custom statuses under Administration > Customizations in TestRail. <table> <tr>
+ * default. You can add additional custom statuses under Administration.</p>
+ * <p>Customizations in TestRail.</p>
+ * <table> <caption>statuses in testrails</caption> <tr>
  * <td>ID</td> <td>Name</td> </tr> <tr> <td>1</td> <td>Passed</td> </tr> <tr> <td>2</td> <td>Blocked</td> </tr> <tr>
  * <td>3</td> <td>Untested</td> </tr> <tr> <td>4</td> <td>Retest</td> </tr> <tr> <td>5</td> <td>Failed</td> </tr>
- * </table> </p>
+ * </table>
  *
  * @author Paulino Padial
  * @see <a href="http://docs.gurock.com/testrail-api2/reference-templates">Templates</a>

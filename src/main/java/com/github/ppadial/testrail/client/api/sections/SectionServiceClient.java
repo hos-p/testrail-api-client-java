@@ -59,10 +59,11 @@ public final class SectionServiceClient extends TestRailServiceBase {
    * @param parentId The ID of the parent section (to build section hierarchies)
    * @param name The name of the section (required)
    * @return created section
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRSection addSection(final int projectId, final String description, final Integer suiteId,
-      final Integer parentId, final String name) throws ApiCallException, TestRailException {
+      final Integer parentId, final String name) throws TestRailException {
     final ApiResponse apiResponse;
     final TRSection responseObjectModel;
 
@@ -84,7 +85,7 @@ public final class SectionServiceClient extends TestRailServiceBase {
     }
 
     // Do the query
-    apiResponse = apiClient.doGet("add_section/" + projectId);
+    apiResponse = get("add_section/" + projectId);
 
     Map<HttpStatusCode, TestRailException> choices =
         new HashMap<HttpStatusCode, TestRailException>() {{
@@ -105,10 +106,11 @@ public final class SectionServiceClient extends TestRailServiceBase {
    * @param description The description of the section (added with TestRail 4.0)
    * @param name The name of the section
    * @return the updated section
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRSection updateConfigGroup(final int sectionId, final String description, final String name)
-      throws ApiCallException, TestRailException, InvalidOrUnknownSectionException, NoAccessToProjectException {
+      throws TestRailException {
 
     final ApiResponse apiResponse;
     final TRSection responseObjectModel;
@@ -141,14 +143,14 @@ public final class SectionServiceClient extends TestRailServiceBase {
 
   /**
    * Deletes an existing section.
-   *
+   * Deleting a section cannot be undone and also deletes all related test cases as well as active tests and
+   * results, i.e. tests and results that weren't closed (archived) yet.
    * @param sectionId The ID of the section
-   * @implNote Deleting a section cannot be undone and also deletes all related test cases as well as active tests &
-   * results, i.e. tests & results that weren't closed (archived) yet.
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final void deleteSection(final int sectionId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownSectionException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query

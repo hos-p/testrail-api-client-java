@@ -61,10 +61,11 @@ public final class SuiteServiceClient extends TestRailServiceBase {
    *
    * @param suiteId The ID of the test suite
    * @return test suite
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRSuite getSuite(final int suiteId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestSuiteException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRSuite responseObjectModel;
 
@@ -89,10 +90,11 @@ public final class SuiteServiceClient extends TestRailServiceBase {
    *
    * @param projectId The ID of the project
    * @return list of suites
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final List<TRSuite> getSuites(final int projectId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRSuite> responseObjectModel;
 
@@ -118,10 +120,11 @@ public final class SuiteServiceClient extends TestRailServiceBase {
    * @param name The name of the test suite (required)
    * @param description The description of the test suite
    * @return created test suite
+   * @throws TestRailException An error in the connection with testrail
    * @since 0.1.0
    */
   public final TRSuite addSuite(final int projectId, final String name, final String description)
-      throws ApiCallException, TestRailException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRSuite responseObjectModel;
 

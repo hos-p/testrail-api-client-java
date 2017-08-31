@@ -51,8 +51,16 @@ public final class CaseServiceClient extends TestRailServiceBase {
     super(apiClient);
   }
 
+  /**
+   * Adds a test case.
+   * @param sectionId the section ID.
+   * @param title the title of the test case
+   * @param fields the fields
+   * @return the created case.
+   * @throws TestRailException An error in the connection with testrail
+   */
   public final TRCase addCase(int sectionId, String title, Map<String, String> fields)
-      throws IOException, ApiCallException {
+      throws TestRailException {
     Map<String, String> body = new HashMap<String, String>();
     body.put("title", title);
     if (fields != null) {
@@ -69,9 +77,10 @@ public final class CaseServiceClient extends TestRailServiceBase {
    *
    * @param caseId The ID of the test case
    * @return the case
+   * @throws TestRailException An error in the connection with testrail
    */
   public final TRCase getCase(final int caseId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestCaseException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
     final TRCase responseObjectModel;
 
@@ -91,9 +100,17 @@ public final class CaseServiceClient extends TestRailServiceBase {
     return responseObjectModel;
   }
 
+  /**
+   * Gets all cases.
+   * @param projectId .
+   * @param suiteId .
+   * @param sectionId .
+   * @param filters .
+   * @return .
+   * @throws TestRailException An error in the connection with testrail
+   */
   public final List<TRCase> getCases(final int projectId, final int suiteId, final int sectionId,
-      final Map<String, String> filters)
-      throws ApiCallException, TestRailException, InvalidOrUnknownProjectException, NoAccessToProjectException {
+      final Map<String, String> filters) throws TestRailException {
     final ApiResponse apiResponse;
     final List<TRCase> responseObjectModel;
 
@@ -127,33 +144,15 @@ public final class CaseServiceClient extends TestRailServiceBase {
     return responseObjectModel;
   }
 
-  // Custom deserializer para los campos custom ?
-
   /**
-   * Needed when you need to work with custom fields that are not part of the {@link TRCase} class
+   * .
+   * @param caseId .
+   * @param fields .
+   * @return .
+   * @throws TestRailException An error in the connection with testrail
    */
-  public final List<Map<String, Object>> getCasesAsMap(final int projectId, final int suiteId, final int sectionId,
-      final Map<String, String> filters)
-      throws IOException, ApiCallException {
-    String url = "get_cases/" + projectId;
-    if (suiteId > 0) {
-      url += "&suite_id=" + suiteId;
-    }
-    if (sectionId > 0) {
-      url += "&section_id=" + sectionId;
-    }
-    if (filters != null) {
-      for (Map.Entry<String, String> entry : filters.entrySet()) {
-        url += "&" + entry.getKey() + "=" + entry.getValue();
-      }
-    }
-//    return objectMapper.readValue(apiClient.doGet(url), new TypeReference<List<Map<String, Object>>>() {
-//    });
-    return null;
-  }
-
   public final TRCase updateCase(final int caseId, final Map<String, Object> fields)
-      throws IOException, ApiCallException {
+      throws TestRailException {
 //    return objectMapper.readValue(apiClient.doPost("update_case/" + caseId,
 //        objectMapper.writeValueAsString(fields)), TRCase.class);
     return null;
@@ -164,9 +163,10 @@ public final class CaseServiceClient extends TestRailServiceBase {
    *
    * @param caseId The ID of the test case
    * @since 0.1.0
+   * @throws TestRailException An error in the connection with testrail
    */
   public void deleteCase(final int caseId)
-      throws ApiCallException, TestRailException, InvalidOrUnknownTestCaseException, NoAccessToProjectException {
+      throws TestRailException {
     final ApiResponse apiResponse;
 
     // Do the query

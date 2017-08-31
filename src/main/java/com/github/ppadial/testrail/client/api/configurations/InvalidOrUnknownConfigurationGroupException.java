@@ -41,6 +41,7 @@ import com.github.ppadial.testrail.client.TestRailException;
  * @since 0.1.0
  */
 public class InvalidOrUnknownConfigurationGroupException extends TestRailException {
+  private static final long serialVersionUID = 12345605L;
 
   /**
    * Constructs a new exception with {@code null} as its detail message. The cause is not initialized, and may
