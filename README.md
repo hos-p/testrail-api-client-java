@@ -42,40 +42,16 @@ This API currently support TestRail 5.4.0 API version.
 
 # Project Information
 
-This project follows the [Maven base POM](https://github.com/ppadial/base-pom) archetype, see the instructions in 
+This project follows the [Maven base POM](https://github.com/ppadial/mavenbase) archetype, see the instructions in 
 All the information about:
 * Configure dependencies
 * Maven commands & targets available
 
-## Specific configuration values
-[Maven base POM](https://github.com/ppadial/base-pom) archetype defines a set of default behaviours but in this 
-project we have some customisations done:
-#### Test level configurations
-
-| Property | Value | Description |
-| :---     | :---: | :---        |
-| base.check.skip-unit | false | Unit tests are mandatory by default |
-| base.check.skip-integration | true | Integration tests aren't mandatory by default |
-
-#### Failure configurations
-| Property | Value | Description |
-| :---     | :---: | :---        |
-| base.check.fail-findbugs                 | false | Not fails if findbugs errors are found       |
-| base.check.fail-enforcer                 | false | Not fails if enforcer errors are found       |
-| base.check.fail-modernizer               | false | Not fails if modernizer errors are found     |
-| base.check.fail-duplicate-finder         | false | Not fails if duplicate code errors are found |
-| base.check.skip-dependency               | true  | Not fails if dependencies errors are found   |
-| base.check.skip-dependency-version-check | true  | Not fails if depen. version errors are found |
-| base.check.fail-pmd                      | false | Not fails if PMD errors are found            |
-
-#### Additional configurations for this project
-| Property | Value | Description |
-| :---     | :---: | :---        |    
-
 ## Quick Start
+
 Easy peasy
 * Clone this repo: `git clone https://github.com/ppadial/testrail-api-client-java.git`
-* Configure your maven system (settings.xml) as specified in [Base POM](https://github.com/ppadial/base-pom)
+* Configure your maven system (settings.xml) as specified in [Maven base POM](https://github.com/ppadial/mavenbase)
 
 Wanna use IntelliJ ?
 * Open the pom.xml with intelliJ
@@ -83,3 +59,22 @@ Wanna use IntelliJ ?
 
 Wanna use Command line?
 * `mvn install`
+
+## Meta
+
+Paulino Padial – [@ppadial](https://github.com/ppadial) – github.com/ppadial
+
+Distributed under the GPLv2 license. See [LICENSE](LICENSE) for more information.
+
+[https://github.com/ppadial/testrail-api-client-java](https://github.com/ppadial/)
+
+## Contributing
+
+1. Fork it (<https://github.com/ppadial/testrail-api-client-java/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
+
+<!-- Markdown link & img dfn's -->
+[wiki]: https://github.com/ppadial/testrail-api-client-java/wiki

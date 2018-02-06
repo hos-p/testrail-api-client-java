@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2017. Paulino Padial
+  ~ Copyright (c) 2018. Paulino Padial
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining
   ~ a copy of this software and associated documentation files (the
@@ -25,9 +25,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.github.ppadial</groupId>
-    <artifactId>parent-pom</artifactId>
-    <version>1.5</version>
+    <groupId>com.github.ppadial.mavenbase</groupId>
+    <artifactId>pom</artifactId>
+    <version>1</version>
   </parent>
 
   <groupId>com.github.ppadial</groupId>
@@ -93,15 +93,17 @@
 
   <properties>
     <project.build.targetJdk>1.8</project.build.targetJdk>
-    <base.check.fail-findbugs>false</base.check.fail-findbugs>
-    <base.check.fail-enforcer>false</base.check.fail-enforcer>
-    <base.check.fail-modernizer>false</base.check.fail-modernizer>
-    <base.check.fail-duplicate-finder>false</base.check.fail-duplicate-finder>
-    <base.check.skip-dependency>true</base.check.skip-dependency>
-    <base.check.skip-dependency-version-check>true</base.check.skip-dependency-version-check>
-    <base.check.fail-pmd>false</base.check.fail-pmd>
-    <base.check.skip-integration>true</base.check.skip-integration>
-    <base.check.skip-all>true</base.check.skip-all>
+    <!-- Skip flags -->
+    <check.integration.skip>true</check.integration.skip>
+    <check.dependency.skip>true</check.dependency.skip>
+    <check.dependency-version.skip>true</check.dependency-version.skip>
+    <!-- fail flags -->
+    <check.pmd.fail.fail>false</check.pmd.fail.fail>
+    <check.findbugs.fail>false</check.findbugs.fail>
+    <check.enforcer.fail>false</check.enforcer.fail>
+    <check.modernizer.fail>false</check.modernizer.fail>
+    <check.duplicate-finder.fail>false</check.duplicate-finder.fail>
+    <check.spotbugs.fail>false</check.spotbugs.fail>
   </properties>
 
   <dependencies>
