@@ -9,7 +9,7 @@ Use this dependency in your maven config
 <dependency>
   <groupId>com.github.ppadial</groupId>
   <artifactId>testrail-api-client</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.1</version>
 </dependency>
 ```
 
