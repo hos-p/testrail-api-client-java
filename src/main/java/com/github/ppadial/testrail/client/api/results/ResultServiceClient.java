@@ -215,7 +215,7 @@ public final class ResultServiceClient extends TestRailServiceBase {
     final TRResult responseObjectModel;
     final Map<String, String> body = new HashMap<String, String>();
     if (statusId != null) {
-      body.put("statud_id", statusId.toString());
+      body.put("status_id", statusId.toString());
     }
     if (comment != null && StringUtils.isNotEmpty(comment)) {
       body.put("comment", comment);
@@ -288,7 +288,7 @@ public final class ResultServiceClient extends TestRailServiceBase {
     final Map<String, String> body = new HashMap<String, String>();
 
     if (statusId != null) {
-      body.put("statud_id", statusId.toString());
+      body.put("status_id", statusId.toString());
     }
     if (comment != null && StringUtils.isNotEmpty(comment)) {
       body.put("comment", comment);
