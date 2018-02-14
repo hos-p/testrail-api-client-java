@@ -16,4 +16,4 @@ script:
   - mvn clean cobertura:cobertura install
 
 after_success:
-  - mvn coveralls:report
+  - mvn -P coveralls.io coveralls:report
