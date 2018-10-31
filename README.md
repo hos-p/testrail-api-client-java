@@ -64,7 +64,7 @@ Wanna use Command line?
 
 Paulino Padial – [@ppadial](https://github.com/ppadial) – github.com/ppadial
 
-Distributed under the GPLv2 license. See [LICENSE](LICENSE) for more information.
+Distributed under the MIT license. See [LICENSE](LICENSE) for more information.
 
 [https://github.com/ppadial/testrail-api-client-java](https://github.com/ppadial/)
 
