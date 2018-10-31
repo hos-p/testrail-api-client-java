@@ -24,13 +24,20 @@
 package com.github.ppadial.testrail.client;
 
 import com.github.ppadial.testrail.client.api.cases.CaseServiceClient;
+import com.github.ppadial.testrail.client.api.casetypes.CaseTypeServiceClient;
+import com.github.ppadial.testrail.client.api.configurations.ConfigurationServiceClient;
 import com.github.ppadial.testrail.client.api.milestones.MilestoneServiceClient;
 import com.github.ppadial.testrail.client.api.plans.PlanServiceClient;
+import com.github.ppadial.testrail.client.api.priorities.PriorityServiceClient;
+import com.github.ppadial.testrail.client.api.projects.ProjectServiceClient;
 import com.github.ppadial.testrail.client.api.results.ResultServiceClient;
 import com.github.ppadial.testrail.client.api.runs.RunServiceClient;
 import com.github.ppadial.testrail.client.api.sections.SectionServiceClient;
+import com.github.ppadial.testrail.client.api.statuses.StatusServiceClient;
 import com.github.ppadial.testrail.client.api.suites.SuiteServiceClient;
+import com.github.ppadial.testrail.client.api.templates.TemplateServiceClient;
 import com.github.ppadial.testrail.client.api.tests.TestServiceClient;
+import com.github.ppadial.testrail.client.api.users.UserServiceClient;
 import com.github.ppadial.testrail.client.apiClient.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,6 +78,24 @@ public class TestRailClient {
   }
 
   /**
+   * Get access to the case types Api functions.
+   *
+   * @return access to case types functions catalog
+   */
+  public CaseTypeServiceClient caseTypesApi() {
+    return new CaseTypeServiceClient(apiClient);
+  }
+
+  /**
+   * Get access to the configuration Api functions.
+   *
+   * @return access to configuration functions catalog
+   */
+  public ConfigurationServiceClient configurationApi() {
+    return new ConfigurationServiceClient(apiClient);
+  }
+
+  /**
    * Get access to the milestone Api functions.
    *
    * @return access to milestone functions catalog
@@ -86,6 +111,25 @@ public class TestRailClient {
    */
   public PlanServiceClient planApi() {
     return new PlanServiceClient(apiClient);
+  }
+
+  /**
+   * Get access to the priority Api functions.
+   *
+   * @return access to priority functions catalog
+   */
+  public PriorityServiceClient priorityApi() {
+    return new PriorityServiceClient(apiClient);
+  }
+
+
+  /**
+   * Get access to the project Api functions.
+   *
+   * @return access to project functions catalog
+   */
+  public ProjectServiceClient projectApi() {
+    return new ProjectServiceClient(apiClient);
   }
 
   /**
@@ -116,6 +160,15 @@ public class TestRailClient {
   }
 
   /**
+   * Get access to the status Api functions.
+   *
+   * @return access to status functions catalog
+   */
+  public StatusServiceClient statusApi() {
+    return new StatusServiceClient(apiClient);
+  }
+  
+  /**
    * Get access to the suite Api functions.
    *
    * @return access to suite functions catalog
@@ -125,11 +178,29 @@ public class TestRailClient {
   }
 
   /**
+   * Get access to the template Api functions.
+   *
+   * @return access to template functions catalog
+   */
+  public TemplateServiceClient templateApi() {
+    return new TemplateServiceClient(apiClient);
+  }
+    
+  /**
    * Get access to the test Api functions.
    *
    * @return access to test functions catalog
    */
   public TestServiceClient testApi() {
     return new TestServiceClient(apiClient);
+  }
+
+  /**
+   * Get access to the user Api functions.
+   *
+   * @return access to user functions catalog
+   */
+  public UserServiceClient userApi() {
+    return new UserServiceClient(apiClient);
   }
 }

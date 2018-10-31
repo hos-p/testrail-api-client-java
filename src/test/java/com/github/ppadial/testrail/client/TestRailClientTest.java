@@ -23,21 +23,28 @@
 
 package com.github.ppadial.testrail.client;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.github.ppadial.testrail.client.api.cases.CaseServiceClient;
-import com.github.ppadial.testrail.client.apiClient.ApiClient;
+import com.github.ppadial.testrail.client.api.casetypes.CaseTypeServiceClient;
+import com.github.ppadial.testrail.client.api.configurations.ConfigurationServiceClient;
 import com.github.ppadial.testrail.client.api.milestones.MilestoneServiceClient;
 import com.github.ppadial.testrail.client.api.plans.PlanServiceClient;
+import com.github.ppadial.testrail.client.api.priorities.PriorityServiceClient;
+import com.github.ppadial.testrail.client.api.projects.ProjectServiceClient;
 import com.github.ppadial.testrail.client.api.results.ResultServiceClient;
 import com.github.ppadial.testrail.client.api.runs.RunServiceClient;
 import com.github.ppadial.testrail.client.api.sections.SectionServiceClient;
+import com.github.ppadial.testrail.client.api.statuses.StatusServiceClient;
 import com.github.ppadial.testrail.client.api.suites.SuiteServiceClient;
+import com.github.ppadial.testrail.client.api.templates.TemplateServiceClient;
 import com.github.ppadial.testrail.client.api.tests.TestServiceClient;
+import com.github.ppadial.testrail.client.api.users.UserServiceClient;
+import com.github.ppadial.testrail.client.apiClient.ApiClient;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestRailClientTest {
 
@@ -60,6 +67,16 @@ public class TestRailClientTest {
   }
 
   @Test
+  public void testCaseTypesApi() throws Exception {
+    assertThat(testRailClient.caseTypesApi()).isInstanceOf(CaseTypeServiceClient.class);
+  }
+
+  @Test
+  public void testConfigurationApi() throws Exception {
+    assertThat(testRailClient.configurationApi()).isInstanceOf(ConfigurationServiceClient.class);
+  }
+
+  @Test
   public void testMilestoneApi() throws Exception {
     assertThat(testRailClient.milestoneApi()).isInstanceOf(MilestoneServiceClient.class);
   }
@@ -67,6 +84,16 @@ public class TestRailClientTest {
   @Test
   public void testPlanApi() throws Exception {
     assertThat(testRailClient.planApi()).isInstanceOf(PlanServiceClient.class);
+  }
+
+  @Test
+  public void testPriorityApi() throws Exception {
+    assertThat(testRailClient.priorityApi()).isInstanceOf(PriorityServiceClient.class);
+  }
+
+  @Test
+  public void testProjectApi() throws Exception {
+    assertThat(testRailClient.projectApi()).isInstanceOf(ProjectServiceClient.class);
   }
 
   @Test
@@ -85,8 +112,18 @@ public class TestRailClientTest {
   }
 
   @Test
+  public void testStatusApi() throws Exception {
+    assertThat(testRailClient.statusApi()).isInstanceOf(StatusServiceClient.class);
+  }
+
+  @Test
   public void testSuiteApi() throws Exception {
     assertThat(testRailClient.suiteApi()).isInstanceOf(SuiteServiceClient.class);
+  }
+
+  @Test
+  public void testTemplateApi() throws Exception {
+    assertThat(testRailClient.templateApi()).isInstanceOf(TemplateServiceClient.class);
   }
 
   @Test
@@ -94,4 +131,8 @@ public class TestRailClientTest {
     assertThat(testRailClient.testApi()).isInstanceOf(TestServiceClient.class);
   }
 
+  @Test
+  public void testUserApi() throws Exception {
+    assertThat(testRailClient.userApi()).isInstanceOf(UserServiceClient.class);
+  }
 }
