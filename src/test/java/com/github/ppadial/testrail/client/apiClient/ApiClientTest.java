@@ -23,12 +23,11 @@
 
 package com.github.ppadial.testrail.client.apiClient;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -46,7 +45,13 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@PrepareForTest({ ApiClient.class, LoggerFactory.class })
+import javax.net.ssl.SSLContext;
+import java.util.Collection;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
+
+@PrepareForTest({ ApiClient.class, LoggerFactory.class, HttpClientBuilder.class })
 @PowerMockIgnore({ "javax.net.ssl.*" })
 public class ApiClientTest extends PowerMockTestCase {
 
@@ -215,6 +220,20 @@ public class ApiClientTest extends PowerMockTestCase {
         .withRetry(1, 1)
         .withAntiFlood(Long.valueOf(1))
         .build();
+  }
+
+  @Test
+  public void sslContextIsSetInConstructor() {
+    HttpClientBuilder httpClientBuilder = PowerMockito.mock(HttpClientBuilder.class);
+    PowerMockito.mockStatic(HttpClientBuilder.class);
+    PowerMockito.when(HttpClientBuilder.create()).thenReturn(httpClientBuilder);
+    PowerMockito.when(httpClientBuilder.setDefaultHeaders(Mockito.any(Collection.class))).thenReturn(httpClientBuilder);
+    PowerMockito.when(httpClientBuilder.setSSLContext(Mockito.any(SSLContext.class))).thenReturn(httpClientBuilder);
+    PowerMockito.when(httpClientBuilder.build()).thenReturn(Mockito.mock(CloseableHttpClient.class));
+
+    // Action
+    SSLContext sslContext = Mockito.mock(SSLContext.class);
+    new ApiClient("http://ok.url", "user", "password", sslContext);
   }
 
   private static class MockitoStateCleaner implements Runnable {

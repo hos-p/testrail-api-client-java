@@ -23,13 +23,14 @@
 
 package com.github.ppadial.testrail.client;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.net.URI;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.net.ssl.SSLContext;
+import java.net.URI;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestRailClientManagerTest {
 
@@ -51,6 +52,14 @@ public class TestRailClientManagerTest {
   public void testGetClient() throws Exception {
     testRailClientManager = new TestRailClientManager();
     testRailClient = testRailClientManager.getClient(new URI("http://a.com"), "a", "a");
+    assertThat(testRailClient).isNotNull().isInstanceOf(TestRailClient.class);
+  }
+
+  @Test
+  public void testGetClientWithSSLContext() throws Exception {
+    testRailClientManager = new TestRailClientManager();
+    TestRailClient testRailClient = testRailClientManager.getClient(new URI("http://a.com"), "a", "a",
+            null, null, SSLContext.getDefault());
     assertThat(testRailClient).isNotNull().isInstanceOf(TestRailClient.class);
   }
 

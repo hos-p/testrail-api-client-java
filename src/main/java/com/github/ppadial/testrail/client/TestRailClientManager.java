@@ -24,6 +24,8 @@
 package com.github.ppadial.testrail.client;
 
 import com.github.ppadial.testrail.client.apiClient.ApiClient;
+
+import javax.net.ssl.SSLContext;
 import java.net.URI;
 
 /**
@@ -48,8 +50,26 @@ public class TestRailClientManager {
   public TestRailClient getClient(final URI testrailUri, final String username, final String password,
       final Integer retries, final Long antiFloodMs) {
 
+    return getClient(testrailUri, username, password, retries, antiFloodMs, null);
+  }
+
+  /**
+   * Gets a TestRail client with retry and anti-flooding.
+   *
+   * @param testrailUri Testrail base url (http://your.domain)
+   * @param username username
+   * @param password password or token
+   * @param retries number of retries (between 0 and 20)
+   * @param antiFloodMs number of delay between requests
+   * @param sslContext ssl context used for tls/ssl
+   * @return a TestRail client
+   * @since 0.1.0
+   */
+  public TestRailClient getClient(final URI testrailUri, final String username, final String password,
+                                  final Integer retries, final Long antiFloodMs, final SSLContext sslContext) {
+
     // Creates the TestRail Client based on the configuration
-    ApiClient apiClient = new ApiClient(testrailUri.toString(), username, password);
+    ApiClient apiClient = new ApiClient(testrailUri.toString(), username, password, sslContext);
 
     if (antiFloodMs != null) {
       apiClient.enableAntiFlooding(antiFloodMs);

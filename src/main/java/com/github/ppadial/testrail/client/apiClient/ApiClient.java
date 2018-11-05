@@ -23,10 +23,6 @@
 
 package com.github.ppadial.testrail.client.apiClient;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -40,6 +36,12 @@ import org.apache.http.message.BasicHeader;
 import org.assertj.core.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.net.ssl.SSLContext;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Client to talk to TestRail API end points
@@ -75,6 +77,19 @@ public class ApiClient {
    * @since 0.1.0
    */
   public ApiClient(String url, String user, String password) {
+    this(url, user, password, null);
+  }
+
+  /**
+   * Creates a new instance of the object.
+   *
+   * @param url url of the service
+   * @param user username login
+   * @param password login password or token
+   * @param sslContext ssl context used for tls/ssl
+   * @since 0.1.0
+   */
+  public ApiClient(String url, String user, String password, SSLContext sslContext) {
     try {
       LOG.debug(":: Constructor method ::");
       this.url = url + "/index.php?/api/v2/";
@@ -88,7 +103,7 @@ public class ApiClient {
           "Basic " + base64.encodeToString(
               (this.username + ":" + this.password).getBytes(StandardCharsets.UTF_8))));
 
-      httpClient = HttpClientBuilder.create().setDefaultHeaders(headerList).build();
+      httpClient = HttpClientBuilder.create().setDefaultHeaders(headerList).setSSLContext(sslContext).build();
       LOG.debug("Created API client for {}", url);
     } catch (Exception e) {
       LOG.error(e.getMessage());
